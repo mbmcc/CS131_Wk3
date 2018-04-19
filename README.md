@@ -1,4 +1,4 @@
-# CityUniversity CS131 (Spring) week 2
+# CityUniversity CS131 (Spring) week 3
 **homework and discussion board work**
 *Misc class related code*
 Course uses C++
