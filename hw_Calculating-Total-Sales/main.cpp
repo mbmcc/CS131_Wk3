@@ -14,11 +14,12 @@
 //  + Your program should calculate and display the total retail value of all products sold. 
 //  + Use a sentinel-controlled loop to determine when the program should stop looping and display the final results.
 #include <iostream>
-//#include "Sales.h"
+#include <string>
+//#include "Products.h"
 
 using namespace std;
 
-int product = 0;
+int choice = 0;
 double productOne = 2.98;
 double productTwo = 4.50;
 double productThree = 9.98;
@@ -26,51 +27,62 @@ double productFour = 4.49;
 double productFive = 6.87;
 int quantity = 0;
 double cart = 0.00;
+double productCount = 0;
+char again = 'Y';
 
 int main() {
 
     cout << "Please select a product from our store\n"
-        << "Type the product number to add it to your shopping cart\n"
-        << "we currently have the following for sale:\n"
-        << "product 1 — $ 2.98\t product 2 — $ 4.50\t product 3 — $ 9.98\t product 4 — $ 4.49\t product 5 — $ 6.87\n";
-    while ((product = cin.get()) !=("q" || "Q")) { 
-        cout << "Enter the product (number) that you would like to add to your cart.\n"
-             << "Enter \"q\" to quit\n";
-        cin >> product;
+        << "we currently have the following for sale:\n";
         
-        cout << "How many would you like?\n";
+        while (again != 'N' || again != 'n'){ 
+        cout << endl
+            << "\t (1) product 1 — $ 2.98\t (2) product 2 — $ 4.50\t (3) product 3 — $ 9.98\n"
+            << "\t (4) product 4 — $ 4.49\t (5) product 5 — $ 6.87\n\n";
+        cout << "your cart contains " << productCount << " items, totalling $" << cart << " dollars.\n";
+
+        cout << "Type the product (number) to add it to your shopping cart\n";
+        cin >> choice;
+      
+        cout << "How many would you like? ";
         cin >> quantity; 
-        cin.clear();
+        
+        switch (choice) {
+            case -1:
+            break;
 
-        switch (product) {
-                
-            case '1' : 
+            case 1: 
             cart += productOne * quantity;
-            cout << "product (1) $ 2.98 added" << endl; 
+            productCount += quantity;
+            cout << quantity << " of product (1) $ 2.98 added" << endl; 
             break;
-                
-            case '2' : 
+
+            case 2: 
             cart += productTwo * quantity; 
-            cout << "product (2) $ 4.50 added" << endl; 
+            productCount += quantity;
+            cout << quantity << " of product (2) $ 4.50 added" << endl; 
             break;
 
-            case '3' : 
+            case 3: 
             cart += productThree * quantity; 
-            cout << "product (3) $ 9.98 added" << endl;  
+            productCount += quantity;
+            cout << quantity << " of product (3) $ 9.98 added" << endl;  
             break;
 
-            case '4' : 
+            case 4: 
             cart += productFour * quantity; 
-            cout << "product (4) $ 4.49 added" << endl;   
+            productCount += quantity;
+            cout << quantity << " of product (4) $ 4.49 added" << endl;   
             break;
 
-            case '5' :
+            case 5:
             cart += productFive * quantity; 
-            cout << "product (5) $ 6.87 added" << endl;  
+            productCount += quantity;
+            cout << quantity << " of product (5) $ 6.87 added" << endl;  
             break;
 
-            case '\n' :
-            case '\t' : 
+            case '\n':
+            case '\t': 
             break;
 
             default:
@@ -78,7 +90,13 @@ int main() {
             cin.clear();
             break;
         }
-
+    
+        cout << "your cart contains " << productCount << " items, totalling $" << cart << " dollars.\n";
+        cout << "Would you like to continue shopping? Y/N\n" << endl; 
+        cin >> again;
+        if (again == 'N' || again == 'n')
+        break;
     }
+    cout << "Thank you for shopping with us.\n ";
 	return 0;
 }
